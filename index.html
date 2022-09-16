@@ -6,87 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <script>
-
-        let ultimoJogador;
-        let jogadas;
-        let started;
-        let finished;
-
-        function init() {
-            ultimoJogador = "X";
-            jogadas = ["", "", "", "", "", "", "", "", ""];
-            started = true;
-            finished = false;
-            for (let element of document.getElementsByClassName("grid-item")) {
-                element.innerText = "";
-            };
-        }
-
-        function checkWin() {
-            debugger;
-            if (jogadas[0] === jogadas[1] && jogadas[1] === jogadas[2] && jogadas[2].length !== 0) {
-                return true;
-            } else if (jogadas[3] === jogadas[4] && jogadas[4] === jogadas[5] && jogadas[5].length !== 0) {
-                return true;
-            } else if (jogadas[6] === jogadas[7] && jogadas[7] === jogadas[8] && jogadas[8].length !== 0) {
-                return true;
-            } else if (jogadas[0] === jogadas[3] && jogadas[3] === jogadas[6] && jogadas[6].length !== 0) {
-                return true;
-            } else if (jogadas[1] === jogadas[4] && jogadas[4] === jogadas[7] && jogadas[7].length !== 0) {
-                return true;
-            } else if (jogadas[2] === jogadas[5] && jogadas[5] === jogadas[9] && jogadas[9].length !== 0) {
-                return true;
-            } else if (jogadas[0] === jogadas[4] && jogadas[4] === jogadas[8] && jogadas[8].length !== 0) {
-                return true;
-            } else if (jogadas[2] === jogadas[4] && jogadas[4] === jogadas[6] && jogadas[6].length !== 0) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        function mark(element, index) {
-            if (element.innerText.length === 0 && started && !finished) {
-                element.innerText = ultimoJogador === "X" ? "O" : "X";
-                ultimoJogador = element.innerText;
-                jogadas[index] = element.innerText;
-                if (checkWin()) {
-                    alert("You WIN!!");
-                    started = false;
-                    finished = true;
-                }
-            } else if (finished) {
-                let answer = confirm("Jogo Encerrado. Deseja Reinicie o Jogo?");
-                if (answer) {
-                    init();
-                }
-            } else if (!started) {
-                let answer = confirm("Jogo Não Iniciado. Deseja Iniciar o Jogo?");
-                if (answer) {
-                    init();
-                }
-            } else {
-                alert("Posição do Tabuleiro em Uso!");
-            }
-        }
-
-    </script>
+    <script src="scripts/index.js" defer></script>
     <title>Jogo da Velha</title>
 </head>
 
 <body>
+    <h2>Jogo da Velha</h2>
+    <div id="jogador">Jogador: X</div>
     <div class="grid-container">
-        <div class="grid-item" onclick="mark(this, 0)"></div>
-        <div class="grid-item" onclick="mark(this, 1)"></div>
-        <div class="grid-item" onclick="mark(this, 2)"></div>
-        <div class="grid-item" onclick="mark(this, 3)"></div>
-        <div class="grid-item" onclick="mark(this, 4)"></div>
-        <div class="grid-item" onclick="mark(this, 5)"></div>
-        <div class="grid-item" onclick="mark(this, 6)"></div>
-        <div class="grid-item" onclick="mark(this, 7)"></div>
-        <div class="grid-item" onclick="mark(this, 8)"></div>
+        <div onclick="mark(this, 0)"></div>
+        <div onclick="mark(this, 1)"></div>
+        <div onclick="mark(this, 2)"></div>
+        <div onclick="mark(this, 3)"></div>
+        <div onclick="mark(this, 4)"></div>
+        <div onclick="mark(this, 5)"></div>
+        <div onclick="mark(this, 6)"></div>
+        <div onclick="mark(this, 7)"></div>
+        <div onclick="mark(this, 8)"></div>
     </div>
+    <div id="message"></div>
+    <input id="restart" type="hidden" value="Reiniciar" onclick="restart()">
 </body>
 
 </html>

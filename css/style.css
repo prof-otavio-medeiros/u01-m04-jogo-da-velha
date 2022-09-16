@@ -1,3 +1,17 @@
+body {
+    text-align: center;
+}
+
+#jogador, #message {
+    width: 190px;
+    box-sizing: border-box;
+    margin: auto;
+    border: 1px solid chocolate;
+    color: teal;
+    padding: 10px 0px;
+    font-weight: bold;
+}
+
 .grid-container {
     display: grid;
     width: 190px;
@@ -10,7 +24,7 @@
     background-color: brown;
 }
 
-.grid-item {
+.grid-container > div {
     background-color: antiquewhite;
     text-align: center;
     font-size: 3rem;
@@ -18,4 +32,5 @@
 
 input {
     text-align: center;
+    margin-top: 10px;
 }
