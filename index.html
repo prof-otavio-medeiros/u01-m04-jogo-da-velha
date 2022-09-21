@@ -12,17 +12,24 @@
 
 <body>
     <h2>Jogo da Velha</h2>
-    <div id="jogador">Jogador: X</div>
+    <div id="jogIni">
+        <label for="jogadorInicial">Jogador Inicial </label>
+        <select name="jogadorInicial" id="jogadorInicial" onchange="setFirstPlayer()">
+            <option value="X">X</option>
+            <option value="O">O</option>
+        </select>
+    </div>
+    <div id="jogador"></div>
     <div class="grid-container">
-        <div onclick="mark(this, 0)"></div>
-        <div onclick="mark(this, 1)"></div>
-        <div onclick="mark(this, 2)"></div>
-        <div onclick="mark(this, 3)"></div>
-        <div onclick="mark(this, 4)"></div>
-        <div onclick="mark(this, 5)"></div>
-        <div onclick="mark(this, 6)"></div>
-        <div onclick="mark(this, 7)"></div>
-        <div onclick="mark(this, 8)"></div>
+        <div onclick="mark(this)"></div>
+        <div onclick="mark(this)"></div>
+        <div onclick="mark(this)"></div>
+        <div onclick="mark(this)"></div>
+        <div onclick="mark(this)"></div>
+        <div onclick="mark(this)"></div>
+        <div onclick="mark(this)"></div>
+        <div onclick="mark(this)"></div>
+        <div onclick="mark(this)"></div>
     </div>
     <div id="message"></div>
     <input id="restart" type="hidden" value="Reiniciar" onclick="restart()">

@@ -1,18 +1,28 @@
-let jogadorAtual;
-let started;
+let jogadorAtual = document.getElementById("jogadorInicial").value;
+let started = false;
 
+document.getElementById("jogador").innerText = "Jogador: " + jogadorAtual;
 document.getElementById("message").innerText = "Jogo Não Iniciado";
 
+function setCurrentPlayer(jogador) {
+  document.getElementById("jogador").innerText = "Jogador: " + jogador;
+}
+
+function setFirstPlayer() {
+  jogadorAtual = document.getElementById("jogadorInicial").value;
+  setCurrentPlayer(jogadorAtual);
+}
+
 function restart() {
-  jogadorAtual = "X";
+  jogadorAtual = document.getElementById("jogadorInicial").value;
   started = true;
   for (let element of document.getElementsByClassName("grid-container")[0]
     .children) {
     element.style.backgroundColor = "#faebd7";
     element.innerText = "";
   }
-  document.getElementById("jogador").innerText = "Jogador: " + jogadorAtual;
-  document.getElementById("message").innerText = "Jogo Iniciado";
+  setCurrentPlayer(jogadorAtual);
+  document.getElementById("message").innerText = "Jogo em Andamento";
   document.getElementById("restart").type = "hidden";
 }
 
@@ -55,26 +65,47 @@ function checkWin() {
   }
 }
 
+function checkNoWin() {
+  let noWin = true;
+  for (let element of document.getElementsByClassName("grid-container")[0]
+    .children) {
+    noWin = noWin && element.innerText !== "";
+  }
+  if(noWin) {
+    for (let element of document.getElementsByClassName("grid-container")[0]
+    .children) {
+      element.style.backgroundColor = "aqua";
+  }
+  }
+  return noWin;
+}
+
 function mark(element) {
+  let gameOver = true;
   if (element.innerText.length === 0 && started) {
     element.innerText = jogadorAtual;
     jogadorAtual = jogadorAtual === "X" ? "O" : "X";
-    document.getElementById("jogador").innerText = "Jogador: " + jogadorAtual;
+    setCurrentPlayer(jogadorAtual);
+    document.getElementById("message").innerText = "Jogo em Andamento";
     if (checkWin()) {
       document.getElementById("message").innerText =
         "O Jogador '" + element.innerText + "' Venceu!";
+    } else if (checkNoWin()) {
+      document.getElementById("message").innerText = "Jogo Sem Ganhadores!";
+    } else {
+      gameOver = false;
+    }
+    if (gameOver) {
       document.getElementById("restart").type = "button";
       started = false;
     }
   } else if (!started) {
     if (document.getElementById("restart").type === "hidden") {
       init(element);
-      document.getElementById("message").innerText = "Jogo Iniciado";
     } else {
       document.getElementById("message").innerText = "Reinicie o Jogo";
     }
-  } else if (document.getElementById("restart").type !== "hidden") {
-    document.getElementById("message").innerText =
-      "Posição do Tabuleiro em Uso!";
+  } else if (document.getElementById("restart").type === "hidden") {
+    document.getElementById("message").innerText = "Posição em Uso!";
   }
 }
