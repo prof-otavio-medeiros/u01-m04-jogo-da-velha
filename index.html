@@ -12,12 +12,12 @@
 
 <body>
     <h2>Jogo da Velha</h2>
+    <h3>Jogador Inicial</h3>
     <div id="jogIni">
-        <label for="jogadorInicial">Jogador Inicial </label>
-        <select name="jogadorInicial" id="jogadorInicial" onchange="setFirstPlayer()">
-            <option value="X">X</option>
-            <option value="O">O</option>
-        </select>
+        <img src="imgs/Ironman.png">
+        <img src="imgs/Spiderwoman.png">
+        <input type="radio" name="jogadorInicial" id="jogadorInicial1" value="X" checked onchange="restart()">
+        <input type="radio" name="jogadorInicial" id="jogadorInicial2" value="O" onchange="restart()">
     </div>
     <div id="jogador"></div>
     <div class="grid-container">
@@ -32,7 +32,7 @@
         <div onclick="mark(this)"></div>
     </div>
     <div id="message"></div>
-    <input id="restart" type="hidden" value="Reiniciar" onclick="restart()">
+    <input id="restart" type="hidden" value="Reiniciar" onclick="init()">
 </body>
 
 </html>
